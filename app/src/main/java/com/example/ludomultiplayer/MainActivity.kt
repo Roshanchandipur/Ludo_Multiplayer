@@ -82,26 +82,28 @@ class MainActivity : AppCompatActivity() {
             R.drawable.df6
         )
         val button = findViewById<Button>(R.id.roll)
+        var random: Int = 0;
         button.setOnClickListener{
             GlobalScope.launch(Dispatchers.Main){
-                rollTheDice()
+                random = rollTheDice()
             }
         }
+        img.setImageResource(random);
     }
-    suspend fun rollTheDice(): Int{
-        for(item in images){
-            img.setImageResource(item)
-            delay(10)
-        }
-        for(i in 0..images.size-10){
-            img.setImageResource(images.get(i))
-            delay(100)
-        }
-        val random =  Random.nextInt(1, 7)
-        img.setImageResource(final.get(random-1))
-        return random
-        return 1
-    }
+//    suspend fun rollTheDice(): Int{
+//        var size = images.size
+//        for(i in 0..size-10-1){
+//            img.setImageResource(images.get(i))
+//            delay(10)
+//        }
+//        for(i in size-10..images.size-1){
+//            img.setImageResource(images.get(i))
+//            delay(20)
+//        }
+//        val random =  Random.nextInt(1, 7)
+//        img.setImageResource(final.get(random-1))
+//        return random
+//    }
 
     fun draw(){
         val height = board.height
